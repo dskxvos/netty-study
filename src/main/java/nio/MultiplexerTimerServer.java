@@ -55,7 +55,6 @@ public class MultiplexerTimerServer implements Runnable{
                     selectionKey = it.next();
                     it.remove();
                     try {
-                        //todo
                         handlerInput(selectionKey);
                     }catch (Exception e){
                         if (selectionKey != null){
