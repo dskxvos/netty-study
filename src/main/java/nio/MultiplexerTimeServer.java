@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
-public class MultiplexerTimerServer implements Runnable{
+public class MultiplexerTimeServer implements Runnable{
 
     private Selector selector;
 
@@ -21,7 +21,7 @@ public class MultiplexerTimerServer implements Runnable{
     private volatile boolean stop;
 
 
-    public MultiplexerTimerServer(int port)  {
+    public MultiplexerTimeServer(int port)  {
 
         try {
             selector = Selector.open();

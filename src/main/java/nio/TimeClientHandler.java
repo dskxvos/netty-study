@@ -9,7 +9,7 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
 
-public class TimerClientHandler implements  Runnable{
+public class TimeClientHandler implements  Runnable{
 
 
     private String host;
@@ -18,7 +18,7 @@ public class TimerClientHandler implements  Runnable{
     private SocketChannel socketChannel;
     private volatile boolean stop;
 
-    public TimerClientHandler(String host, int port) {
+    public TimeClientHandler(String host, int port) {
         this.host = host ==null?"127.0.0.1":host;
         this.port = port;
         try {
