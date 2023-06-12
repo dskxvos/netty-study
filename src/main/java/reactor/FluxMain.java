@@ -6,7 +6,7 @@ public class FluxMain {
 
     public static void main(String[] args) {
 
-        test2();
+        test3();
 
     }
 
@@ -19,13 +19,22 @@ public class FluxMain {
     }
 
     public static void test2(){
-        Flux<Integer> integerFlux = Flux.range(1,4)
-                .map(i->{
-                    if (i<=3){
-                        return i;
+        SampleSubscriber<Integer> ss = new SampleSubscriber();
+        Flux<Integer> integerFlux = Flux.range(1,4);
+        integerFlux.subscribe(i-> System.out.println(i),error-> System.err.println(error.getMessage()),()-> System.out.println("Done"),s->ss.request(10));
+        integerFlux.subscribe(ss);
+    }
+
+    public static void test3(){
+        Flux<String> stringFlux = Flux.generate(()->0,
+                (state,skin)->{
+                    skin.next("3 * "+state+ " = "+ 3*state);
+                    if (state == 10){
+                        skin.complete();
                     }
-                    throw new RuntimeException("the number is Greater than 4");
+                    return state+1;
                 });
-        integerFlux.subscribe(i-> System.out.println(i),error-> System.err.println(error.getMessage()));
+        stringFlux.subscribe(doc-> System.out.println(doc));
+
     }
 }
