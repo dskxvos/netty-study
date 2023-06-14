@@ -3,7 +3,7 @@ package reactor;
 import org.reactivestreams.Subscription;
 import reactor.core.publisher.BaseSubscriber;
 
-public class SampleSubscriber<T> extends BaseSubscriber<T> {
+public class SampleMonoSubscriber<T> extends BaseSubscriber<T> {
 
     @Override
     protected void hookOnSubscribe(Subscription subscription) {

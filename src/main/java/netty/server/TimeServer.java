@@ -1,17 +1,19 @@
-package server;
+package netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import server.handler.DiscardServerHandler;
+import netty.server.handler.TimeServerHandler;
 
-public class DiscardServer {
-
+public class TimeServer {
     private int port;
 
-    public DiscardServer(int port) {
+    public TimeServer(int port) {
         this.port = port;
     }
 
@@ -26,7 +28,7 @@ public class DiscardServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline().addLast(new DiscardServerHandler());
+                            socketChannel.pipeline().addLast(new TimeServerHandler());
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG,128)
@@ -45,7 +47,7 @@ public class DiscardServer {
     }
 
     public static void main(String[] args) {
-        int port = 9090;
-        new DiscardServer(9090).run();
+
+        new TimeServer(9091).run();
     }
 }
